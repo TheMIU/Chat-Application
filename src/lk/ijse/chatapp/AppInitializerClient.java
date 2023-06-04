@@ -15,7 +15,7 @@ public class AppInitializerClient extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("view/Login.fxml"))));
+        primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("view/ClientLogin.fxml"))));
         primaryStage.show();
         primaryStage.setResizable(false);
         primaryStage.setTitle("Login");

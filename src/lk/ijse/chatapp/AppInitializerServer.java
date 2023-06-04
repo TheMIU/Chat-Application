@@ -19,7 +19,5 @@ public class AppInitializerServer extends Application {
         primaryStage.show();
         primaryStage.setResizable(false);
         primaryStage.setTitle("Server");
-
-
     }
 }
