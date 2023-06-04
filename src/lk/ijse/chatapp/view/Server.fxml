@@ -21,7 +21,7 @@
          <font>
             <Font name="JetBrains Mono Bold" size="12.0" />
          </font></Label>
-      <VBox fx:id="vbox" layoutX="18.0" layoutY="52.0" prefHeight="130.0" prefWidth="345.0" style="-fx-background-color: #ffffff;" />
+      <VBox fx:id="vbox" alignment="TOP_CENTER" layoutX="18.0" layoutY="52.0" prefHeight="128.0" prefWidth="345.0" style="-fx-background-color: #ffffff; -fx-padding: 10px;" />
       <Separator layoutX="19.0" layoutY="183.0" prefHeight="11.0" prefWidth="342.0" />
     </children>
 </AnchorPane>

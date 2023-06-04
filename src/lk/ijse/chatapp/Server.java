@@ -11,11 +11,13 @@ public class Server {
         this.serverSocket = serverSocket;
     }
 
-    public static void main(String[] args) throws IOException {
+
+  /*  public static void main(String[] args) throws IOException {
         ServerSocket serverSocket = new ServerSocket(1234);
         Server server = new Server(serverSocket);
         server.startServer();
-    }
+    }*/
+
 
     public void startServer() {
         try {
@@ -42,4 +44,5 @@ public class Server {
             System.out.println(e);
         }
     }
+
 }

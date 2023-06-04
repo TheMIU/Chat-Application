@@ -24,7 +24,7 @@
             <FontAwesomeIcon fill="#8fa2e8" glyphName="CAMERA" size="2em" />
          </graphic></JFXButton>
       <VBox fx:id="vbox" layoutX="19.0" layoutY="91.0" prefHeight="347.0" prefWidth="342.0" style="-fx-background-color: #ffffff;" />
-      <Label layoutX="76.0" layoutY="44.0" prefHeight="41.0" prefWidth="285.0" text="Name" textFill="#8fa2e8">
+      <Label fx:id="txtName" layoutX="76.0" layoutY="44.0" prefHeight="41.0" prefWidth="285.0" text="Name" textFill="#8fa2e8">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

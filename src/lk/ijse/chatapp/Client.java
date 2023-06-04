@@ -22,7 +22,7 @@ public class Client {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+   /* public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter username : ");
         String username = scanner.nextLine();
@@ -31,7 +31,7 @@ public class Client {
         Client client = new Client(socket, username);
         client.listenToMessage();
         client.sendMessage();
-    }
+    }*/
 
     public void sendMessage() {
         try {
