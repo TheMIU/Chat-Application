@@ -16,6 +16,22 @@ public class ClientController {
     public Label txtName;
 
     public void initialize() throws IOException {
+        new Thread(() -> {
+            Scanner scanner = new Scanner(System.in);
+            System.out.print("Enter username : ");
+            String username = scanner.nextLine();
+
+            Socket socket = null;
+            try {
+                socket = new Socket("localhost", 1234);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Client client = new Client(socket, username);
+            client.listenToMessage();
+            client.sendMessage();
+        });
+
        /* Scanner scanner = new Scanner(System.in);
         System.out.print("Enter username : ");
         String username = scanner.nextLine();

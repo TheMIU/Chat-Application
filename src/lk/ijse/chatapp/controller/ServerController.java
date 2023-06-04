@@ -8,7 +8,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import lk.ijse.chatapp.Server;
+
 import java.io.IOException;
+import java.net.ServerSocket;
 
 
 public class ServerController {
@@ -30,6 +33,16 @@ public class ServerController {
         vBox2.setAlignment(Pos.CENTER_RIGHT);
         vbox.getChildren().add(vBox2);
 
+        new Thread(() -> {
+            ServerSocket serverSocket = null;
+            try {
+                serverSocket = new ServerSocket(1234);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Server server = new Server(serverSocket);
+            server.startServer();
+        });
         // Server start
         /*ServerSocket serverSocket = new ServerSocket(1234);
         Server server = new Server(serverSocket);
