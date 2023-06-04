@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import com.jfoenix.controls.JFXTextArea?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="530.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8.0.171"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatapp.controller.ServerController">
+<AnchorPane prefHeight="254.0" prefWidth="380.0" style="-fx-background-color: #c4fff7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatapp.controller.ServerController">
     <children>
-        <JFXTextArea fx:id="txtArea" layoutX="18.0" layoutY="53.0" prefHeight="385.0" prefWidth="345.0"/>
-        <JFXButton layoutX="18.0" layoutY="453.0" onAction="#btnAddNewClickOnAction" prefHeight="41.0" prefWidth="345.0"
-                   text="Add New Client"/>
-        <Label layoutX="18.0" layoutY="29.0" text="Server Status"/>
+        <JFXButton buttonType="RAISED" layoutX="18.0" layoutY="197.0" onAction="#btnAddNewClickOnAction" prefHeight="34.0" prefWidth="345.0" style="-fx-background-color: #04d6ba;" text="Add New Client" textFill="WHITE">
+         <font>
+            <Font name="JetBrains Mono Bold" size="12.0" />
+         </font>
+         <graphic>
+            <FontAwesomeIcon fill="WHITE" glyphName="PLUS" />
+         </graphic></JFXButton>
+        <Label layoutX="20.0" layoutY="29.0" text="Server Status" textFill="#868686">
+         <font>
+            <Font name="JetBrains Mono Bold" size="12.0" />
+         </font></Label>
+      <VBox fx:id="vbox" layoutX="18.0" layoutY="52.0" prefHeight="130.0" prefWidth="345.0" style="-fx-background-color: #ffffff;" />
+      <Separator layoutX="19.0" layoutY="183.0" prefHeight="11.0" prefWidth="342.0" />
     </children>
 </AnchorPane>
