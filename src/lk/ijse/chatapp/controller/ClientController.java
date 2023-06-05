@@ -6,7 +6,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Stage;
 import lk.ijse.chatapp.Client;
 
 import java.io.IOException;
@@ -18,13 +17,10 @@ public class ClientController {
     public VBox vbox;
     public Label txtName;
     private Client client;
-    public boolean notTyped = true;
 
     public void initialize() {
         new Thread(() -> {
-            Scanner scanner = new Scanner(System.in);
-            System.out.print("Enter username : ");
-            String username = scanner.nextLine();
+            String username = txtName.getText();
 
             Socket socket = null;
             try {
@@ -34,9 +30,8 @@ public class ClientController {
             }
             client = new Client(socket, username, this);
             client.listenToMessage();
-            client.sendMessage();
+            client.chatEnterText();
         }).start();
-
 
         // Set UserName & reset to null
         txtName.setText(LoginController.userName);
@@ -45,8 +40,7 @@ public class ClientController {
 
     public void btnSendMsgClickOnAction(ActionEvent actionEvent) {
         printMsg(txtSend.getText(), Pos.CENTER_RIGHT);
-        notTyped = false;
-        client.sendMessage2();
+        client.sendMessage();
         txtSend.clear();
         txtSend.requestFocus();
     }
@@ -58,6 +52,9 @@ public class ClientController {
         VBox vBox = new VBox();
         Label label = new Label(msg);
         label.setFont(Font.font("jetbrains mono"));
+
+        label.setStyle("-fx-background-color: #bafaf7 ; -fx-label-padding: 3px ; -fx-text-fill: #312e2e;");
+
         vBox.getChildren().add(label);
         vBox.setAlignment(pos);
         vbox.getChildren().add(vBox);

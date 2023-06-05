@@ -8,9 +8,9 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import lk.ijse.chatapp.AppInitializerServer;
 import lk.ijse.chatapp.Server;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 
@@ -46,7 +46,10 @@ public class ServerController {
     public void printMsg(String msg, Pos pos) {
         VBox vBox = new VBox();
         Label label = new Label(msg);
-        label.setFont(Font.font("jetbrains mono"));
+        label.setFont(Font.font("jetbrains mono0"));
+
+        label.setStyle("-fx-background-color: #bafaf7 ; -fx-label-padding: 3px ; -fx-text-fill: #312e2e;");
+
         vBox.getChildren().add(label);
         vBox.setAlignment(pos);
         vbox.getChildren().add(vBox);

@@ -6,7 +6,6 @@ import lk.ijse.chatapp.controller.ClientController;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class Client {
     private Socket socket;
@@ -28,53 +27,19 @@ public class Client {
         }
     }
 
-
-    /*public void sendMessage() {
+    //1st msg "SERVER: " + clientName + " has entered the chat"
+    public void chatEnterText() {
         try {
             dataOutputStream.writeUTF(username);
             dataOutputStream.flush();
-
-            Scanner scanner = new Scanner(System.in);
-            while (socket.isConnected()) {
-                //String messageToSend = scanner.nextLine();
-                String messageToSend = clientController.txtSend.getText();
-
-                dataOutputStream.writeUTF(username + ": " + messageToSend);
-                dataOutputStream.flush();
-            }
-        } catch (Exception e) {
-            closeEverything(socket, dataInputStream, dataOutputStream);
-        }
-    }*/
-
-    // iterate till 1st msg
-    public void sendMessage() {
-        try {
-            dataOutputStream.writeUTF(username);
-            dataOutputStream.flush();
-
-            // Get the text from the txtSend text field
-            String messageToSend = "";
-
-            while (clientController.notTyped) {
-            messageToSend = clientController.txtSend.getText();
-            }
-
-            // Send the message
-            String message = username + ": " + messageToSend;
-            dataOutputStream.writeUTF(message);
-            dataOutputStream.flush();
-
-            // again set not typed to true (again iterate while loop continually)
-            clientController.notTyped = true;
 
         } catch (Exception e) {
             closeEverything(socket, dataInputStream, dataOutputStream);
         }
     }
 
-    // no iteration, send button clicked --> invoked
-    public void sendMessage2() {
+    // send button clicked --> invoked
+    public void sendMessage() {
         try {
             // Get the text from the txtSend text field
             String messageToSend = "";

@@ -7,9 +7,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="380.0" style="-fx-background-color: #c4fff7;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatapp.controller.LoginController">
+<AnchorPane prefHeight="200.0" prefWidth="380.0" style="-fx-background-color: #1d6966;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.chatapp.controller.LoginController">
     <children>
-        <JFXTextField fx:id="txtName" alignment="CENTER" focusColor="WHITE" layoutX="153.0" layoutY="56.0" prefHeight="41.0" prefWidth="188.0" promptText="Your Name" style="-fx-background-color: #ffffff;" unFocusColor="WHITE">
+        <JFXTextField fx:id="txtName" alignment="CENTER" focusColor="#ffffff00" layoutX="153.0" layoutY="56.0" prefHeight="41.0" prefWidth="188.0" promptText="Your Name" style="-fx-background-color: #ffffff;" unFocusColor="#ffffff00">
          <font>
             <Font name="JetBrains Mono Regular" size="12.0" />
          </font></JFXTextField>
@@ -18,6 +18,6 @@
             <Font name="JetBrains Mono Bold" size="12.0" />
          </font></JFXButton>
         <ImageView fitHeight="139.0" fitWidth="130.0" layoutX="24.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" />
-      <FontAwesomeIcon fill="#8fa2e8" glyphName="USER" layoutX="55.0" layoutY="134.0" size="7em" wrappingWidth="80.4285717010498" />
+      <FontAwesomeIcon fill="#b6ffe3" glyphName="USER" layoutX="55.0" layoutY="134.0" size="7em" wrappingWidth="80.4285717010498" />
     </children>
 </AnchorPane>

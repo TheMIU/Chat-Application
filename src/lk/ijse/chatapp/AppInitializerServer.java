@@ -19,6 +19,8 @@ public class AppInitializerServer extends Application {
         primaryStage.setScene(new Scene(FXMLLoader.load(getClass().getResource("view/Server.fxml"))));
         primaryStage.show();
         primaryStage.setResizable(false);
+        primaryStage.setX(0);
+        primaryStage.setY(0);
         primaryStage.setTitle("Server");
 
         primaryStage.setOnCloseRequest(event -> {

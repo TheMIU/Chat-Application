@@ -2,6 +2,7 @@ package lk.ijse.chatapp;
 
 import javafx.application.Platform;
 import javafx.geometry.Pos;
+import lk.ijse.chatapp.controller.ClientController;
 import lk.ijse.chatapp.controller.ServerController;
 
 import java.io.*;
@@ -54,7 +55,6 @@ public class ClientHandler implements Runnable {
                     clientHandler.dataOutputStream.writeUTF(messageToSend);
                     clientHandler.dataOutputStream.flush();
 
-                    Platform.runLater(() -> serverController.printMsg(messageToSend, Pos.CENTER_LEFT));
                 }
             } catch (Exception e) {
                 closeEverything(socket, dataInputStream, dataOutputStream);
