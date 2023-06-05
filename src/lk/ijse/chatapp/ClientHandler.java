@@ -1,5 +1,8 @@
 package lk.ijse.chatapp;
 
+import javafx.geometry.Pos;
+import lk.ijse.chatapp.controller.ServerController;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -13,6 +16,8 @@ public class ClientHandler implements Runnable {
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
     private String clientName;
+
+    private ServerController serverController;
 
     @Override
     public void run() {
@@ -29,8 +34,10 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    public ClientHandler(Socket socket) {
+    public ClientHandler(Socket socket, ServerController serverController) {
         try {
+            this.serverController = serverController;
+
             this.socket = socket;
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -50,6 +57,8 @@ public class ClientHandler implements Runnable {
                     clientHandler.bufferedWriter.write(messageToSend);
                     clientHandler.bufferedWriter.newLine();
                     clientHandler.bufferedWriter.flush();
+
+                    //serverController.printMsg(messageToSend, Pos.CENTER_LEFT);
                 }
             } catch (Exception e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);

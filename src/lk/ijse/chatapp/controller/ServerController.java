@@ -18,20 +18,20 @@ public class ServerController {
     public VBox vbox;
 
     public void initialize() throws IOException {
-        // begin
+        /*// begin
         VBox vBox1 = new VBox();
         Label label = new Label("Server Started.");
         label.setFont(Font.font("jetbrains mono"));
         vBox1.getChildren().add(label);
         vBox1.setAlignment(Pos.CENTER_LEFT);
-        vbox.getChildren().add(vBox1);
+        vbox.getChildren().add(vBox1);*/
 
-        VBox vBox2 = new VBox();
+       /* VBox vBox2 = new VBox();
         Label label2 = new Label("right text.");
         label2.setFont(Font.font("jetbrains mono"));
         vBox2.getChildren().add(label2);
         vBox2.setAlignment(Pos.CENTER_RIGHT);
-        vbox.getChildren().add(vBox2);
+        vbox.getChildren().add(vBox2);*/
 
         // Server start
         new Thread(() -> {
@@ -42,7 +42,7 @@ public class ServerController {
                 e.printStackTrace();
             }
             Server server = new Server(serverSocket);
-            server.startServer();
+            server.startServer(this);
         }).start();
     }
 
@@ -56,4 +56,12 @@ public class ServerController {
         stage.show();
     }
 
+    public void printMsg(String msg, Pos pos) {
+        VBox vBox = new VBox();
+        Label label = new Label(msg);
+        label.setFont(Font.font("jetbrains mono"));
+        vBox.getChildren().add(label);
+        vBox.setAlignment(pos);
+        vbox.getChildren().add(vBox);
+    }
 }

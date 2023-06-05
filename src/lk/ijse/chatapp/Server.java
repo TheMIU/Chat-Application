@@ -1,10 +1,17 @@
 package lk.ijse.chatapp;
 
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import lk.ijse.chatapp.controller.ServerController;
+
 import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
     private ServerSocket serverSocket;
+    private ServerController serverController;
 
     public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
@@ -18,13 +25,18 @@ public class Server {
     }*/
 
 
-    public void startServer() {
-        System.out.println("working");
+    public void startServer(ServerController serverController) {
+        this.serverController = serverController;
+
+        // Server Started msg
+        serverController.printMsg("Server Started.",Pos.CENTER_LEFT);
+
         try {
             while (!serverSocket.isClosed()) {
                 Socket socket = serverSocket.accept();
                 System.out.println("New Client Connected!");
-                ClientHandler clientHandler = new ClientHandler(socket);
+                //serverController.printMsg("New Client Connected!",Pos.CENTER_LEFT);
+                ClientHandler clientHandler = new ClientHandler(socket,serverController);
 
                 Thread thread = new Thread(clientHandler);
                 thread.start();
@@ -35,6 +47,7 @@ public class Server {
         }
     }
 
+
     public void closeServerSocket() {
         try {
             if (serverSocket != null) {
@@ -44,5 +57,4 @@ public class Server {
             System.out.println(e);
         }
     }
-
 }
