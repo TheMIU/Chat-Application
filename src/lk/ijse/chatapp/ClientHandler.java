@@ -11,8 +11,8 @@ import java.util.ArrayList;
 public class ClientHandler implements Runnable {
     public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
     private Socket socket;
-    DataOutputStream dataOutputStream;
-    DataInputStream dataInputStream;
+    private DataOutputStream dataOutputStream;
+    private DataInputStream dataInputStream;
     private String clientName;
     private ServerController serverController;
 

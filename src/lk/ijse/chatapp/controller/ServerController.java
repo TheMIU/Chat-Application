@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import lk.ijse.chatapp.AppInitializerServer;
 import lk.ijse.chatapp.Server;
 
 import java.io.IOException;
@@ -16,23 +17,9 @@ import java.net.ServerSocket;
 
 public class ServerController {
     public VBox vbox;
+    private Stage primaryStage;
 
     public void initialize() throws IOException {
-        /*// begin
-        VBox vBox1 = new VBox();
-        Label label = new Label("Server Started.");
-        label.setFont(Font.font("jetbrains mono"));
-        vBox1.getChildren().add(label);
-        vBox1.setAlignment(Pos.CENTER_LEFT);
-        vbox.getChildren().add(vBox1);*/
-
-       /* VBox vBox2 = new VBox();
-        Label label2 = new Label("right text.");
-        label2.setFont(Font.font("jetbrains mono"));
-        vBox2.getChildren().add(label2);
-        vBox2.setAlignment(Pos.CENTER_RIGHT);
-        vbox.getChildren().add(vBox2);*/
-
         // Server start
         new Thread(() -> {
             ServerSocket serverSocket = null;
@@ -64,4 +51,5 @@ public class ServerController {
         vBox.setAlignment(pos);
         vbox.getChildren().add(vBox);
     }
+
 }

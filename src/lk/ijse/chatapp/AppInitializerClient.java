@@ -1,6 +1,7 @@
 package lk.ijse.chatapp;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -19,5 +20,10 @@ public class AppInitializerClient extends Application {
         primaryStage.show();
         primaryStage.setResizable(false);
         primaryStage.setTitle("Login");
+
+        primaryStage.setOnCloseRequest(event -> {
+            event.consume();
+            Platform.exit();  // Close the application
+        });
     }
 }

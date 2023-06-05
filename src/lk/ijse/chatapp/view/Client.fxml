@@ -33,7 +33,7 @@
       <Separator layoutX="19.0" layoutY="438.0" prefHeight="11.0" prefWidth="342.0" />
       <ScrollPane layoutX="19.0" layoutY="87.0" prefHeight="350.0" prefWidth="342.0">
          <content>
-            <VBox fx:id="vbox" alignment="TOP_RIGHT" maxHeight="348.0" prefHeight="348.0" prefWidth="339.0" scaleShape="false" style="-fx-background-color: #ffffff;" />
+            <VBox fx:id="vbox" alignment="TOP_RIGHT" maxHeight="348.0" prefHeight="348.0" prefWidth="339.0" scaleShape="false" style="-fx-background-color: #ffffff; -fx-padding: 20px;" />
          </content>
       </ScrollPane>
     </children>
