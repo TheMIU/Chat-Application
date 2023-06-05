@@ -4,6 +4,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -23,7 +24,6 @@
          <graphic>
             <FontAwesomeIcon fill="#8fa2e8" glyphName="CAMERA" size="2em" />
          </graphic></JFXButton>
-      <VBox fx:id="vbox" layoutX="19.0" layoutY="91.0" prefHeight="347.0" prefWidth="342.0" style="-fx-background-color: #ffffff;" />
       <Label fx:id="txtName" layoutX="76.0" layoutY="44.0" prefHeight="41.0" prefWidth="285.0" text="Name" textFill="#8fa2e8">
          <font>
             <Font name="System Bold" size="24.0" />
@@ -31,5 +31,10 @@
       </Label>
       <FontAwesomeIcon fill="#8fa2e8" glyphName="USER" layoutX="21.0" layoutY="76.0" size="3em" textAlignment="CENTER" wrappingWidth="50.00000178813934" />
       <Separator layoutX="19.0" layoutY="438.0" prefHeight="11.0" prefWidth="342.0" />
+      <ScrollPane layoutX="19.0" layoutY="87.0" prefHeight="350.0" prefWidth="342.0">
+         <content>
+            <VBox fx:id="vbox" alignment="TOP_RIGHT" maxHeight="348.0" prefHeight="348.0" prefWidth="339.0" scaleShape="false" style="-fx-background-color: #ffffff;" />
+         </content>
+      </ScrollPane>
     </children>
 </AnchorPane>
