@@ -11,14 +11,9 @@ import java.util.ArrayList;
 public class ClientHandler implements Runnable {
     public static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
     private Socket socket;
-/*    private BufferedReader bufferedReader;
-    private BufferedWriter bufferedWriter;*/
-
     DataOutputStream dataOutputStream;
     DataInputStream dataInputStream;
-
     private String clientName;
-
     private ServerController serverController;
 
     @Override
@@ -30,7 +25,7 @@ public class ClientHandler implements Runnable {
                 messageFromClient = dataInputStream.readUTF();
                 broadcastMassage(messageFromClient);
             } catch (Exception e) {
-                closeEverything(socket, dataInputStream , dataOutputStream);
+                closeEverything(socket, dataInputStream, dataOutputStream);
                 break;
             }
         }
@@ -39,14 +34,9 @@ public class ClientHandler implements Runnable {
     public ClientHandler(Socket socket, ServerController serverController) {
         try {
             this.serverController = serverController;
-
             this.socket = socket;
-
             this.dataInputStream = new DataInputStream(socket.getInputStream());
             this.dataOutputStream = new DataOutputStream(socket.getOutputStream());
-
-            //this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-            //this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
             this.clientName = dataInputStream.readUTF();
             clientHandlers.add(this);
@@ -61,15 +51,10 @@ public class ClientHandler implements Runnable {
         for (ClientHandler clientHandler : clientHandlers) {
             try {
                 if (!clientHandler.clientName.equals(clientName)) {
-                    /*clientHandler.bufferedWriter.write(messageToSend);
-                    clientHandler.bufferedWriter.newLine();
-                    clientHandler.bufferedWriter.flush();*/
                     clientHandler.dataOutputStream.writeUTF(messageToSend);
                     clientHandler.dataOutputStream.flush();
 
                     Platform.runLater(() -> serverController.printMsg(messageToSend, Pos.CENTER_LEFT));
-                    //serverController.printMsg("test msg", Pos.CENTER_LEFT);
-                    //serverController.printMsg(messageToSend, Pos.CENTER_LEFT);
                 }
             } catch (Exception e) {
                 closeEverything(socket, dataInputStream, dataOutputStream);

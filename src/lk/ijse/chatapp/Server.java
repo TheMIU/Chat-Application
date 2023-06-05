@@ -2,9 +2,6 @@ package lk.ijse.chatapp;
 
 import javafx.application.Platform;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import lk.ijse.chatapp.controller.ServerController;
 
 import java.net.ServerSocket;
@@ -21,7 +18,6 @@ public class Server {
 
     public void startServer(ServerController serverController) {
         this.serverController = serverController;
-
 
         // Server Started msg
         Platform.runLater(() -> serverController.printMsg("Server Started.", Pos.CENTER_LEFT));
