@@ -33,6 +33,7 @@ public class ServerController {
         vBox2.setAlignment(Pos.CENTER_RIGHT);
         vbox.getChildren().add(vBox2);
 
+        // Server start
         new Thread(() -> {
             ServerSocket serverSocket = null;
             try {
@@ -42,11 +43,7 @@ public class ServerController {
             }
             Server server = new Server(serverSocket);
             server.startServer();
-        });
-        // Server start
-        /*ServerSocket serverSocket = new ServerSocket(1234);
-        Server server = new Server(serverSocket);
-        server.startServer();*/
+        }).start();
     }
 
     public void btnAddNewClickOnAction(ActionEvent actionEvent) throws IOException {

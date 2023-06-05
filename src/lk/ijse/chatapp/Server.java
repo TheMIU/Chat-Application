@@ -1,6 +1,5 @@
 package lk.ijse.chatapp;
 
-import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -20,6 +19,7 @@ public class Server {
 
 
     public void startServer() {
+        System.out.println("working");
         try {
             while (!serverSocket.isClosed()) {
                 Socket socket = serverSocket.accept();

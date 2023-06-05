@@ -31,7 +31,7 @@ public class LoginController {
             currentStage.close();
 
         } else {
-            new Alert(Alert.AlertType.ERROR, "Enter User Name!").show();
+            new Alert(Alert.AlertType.ERROR, "User Name Required!").show();
         }
 
     }

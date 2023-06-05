@@ -15,7 +15,7 @@ public class ClientController {
     public VBox vbox;
     public Label txtName;
 
-    public void initialize() throws IOException {
+    public void initialize()  {
         new Thread(() -> {
             Scanner scanner = new Scanner(System.in);
             System.out.print("Enter username : ");
@@ -30,18 +30,10 @@ public class ClientController {
             Client client = new Client(socket, username);
             client.listenToMessage();
             client.sendMessage();
-        });
+        }).start();
 
-       /* Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter username : ");
-        String username = scanner.nextLine();
 
-        Socket socket = new Socket("localhost", 1234);
-        Client client = new Client(socket, username);
-        client.listenToMessage();
-        client.sendMessage();*/
-
-        // Set UserName
+        // Set UserName & reset to null
         txtName.setText(LoginController.userName);
         LoginController.userName = null;
     }
