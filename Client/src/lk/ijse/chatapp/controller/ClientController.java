@@ -1,10 +1,10 @@
 package lk.ijse.chatapp.controller;
 
+import lk.ijse.chatapp.Client;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
@@ -12,12 +12,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
-import lk.ijse.chatapp.Client;
-
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class ClientController {
     public JFXTextField txtSend;

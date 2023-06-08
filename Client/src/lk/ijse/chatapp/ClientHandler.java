@@ -1,10 +1,4 @@
 package lk.ijse.chatapp;
-
-import javafx.application.Platform;
-import javafx.geometry.Pos;
-import lk.ijse.chatapp.controller.ClientController;
-import lk.ijse.chatapp.controller.ServerController;
-
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -15,7 +9,6 @@ public class ClientHandler implements Runnable {
     private DataOutputStream dataOutputStream;
     private DataInputStream dataInputStream;
     private String clientName;
-    private ServerController serverController;
 
     @Override
     public void run() {
@@ -32,9 +25,8 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    public ClientHandler(Socket socket, ServerController serverController) {
+    public ClientHandler(Socket socket) {
         try {
-            this.serverController = serverController;
             this.socket = socket;
             this.dataInputStream = new DataInputStream(socket.getInputStream());
             this.dataOutputStream = new DataOutputStream(socket.getOutputStream());

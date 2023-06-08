@@ -1,11 +1,12 @@
 package lk.ijse.chatapp;
 
+import lk.ijse.chatapp.controller.ClientController;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
-import lk.ijse.chatapp.controller.ClientController;
+
 
 import javax.imageio.ImageIO;
 import java.awt.*;
