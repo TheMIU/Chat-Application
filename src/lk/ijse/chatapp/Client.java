@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import lk.ijse.chatapp.controller.ClientController;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.Socket;
@@ -45,7 +46,7 @@ public class Client {
         }
     }
 
-    // send button clicked --> invoked
+    // send button clicked --> invoke
     public void sendMessage() {
         try {
             // Get the text from the txtSend text field
@@ -65,11 +66,37 @@ public class Client {
 
 
     public static String convertImageToString(Image image) throws IOException {
+        // Resize the image
+        double maxWidth = 600; // Maximum width for resizing
+        double maxHeight = 400; // Maximum height for resizing
+        double width = image.getWidth();
+        double height = image.getHeight();
+
+        if (width > maxWidth || height > maxHeight) {
+            double scaleFactor = Math.min(maxWidth / width, maxHeight / height);
+            width *= scaleFactor;
+            height *= scaleFactor;
+        }
+
+        // Create a resized BufferedImage
+        BufferedImage resizedImage = new BufferedImage((int) width, (int) height, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = resizedImage.createGraphics();
+        g.drawImage(SwingFXUtils.fromFXImage(image, null), 0, 0, (int) width, (int) height, null);
+        g.dispose();
+
+        // Compress the image
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
-        ImageIO.write(bufferedImage, "png", outputStream);
+        ImageIO.write(resizedImage, "jpg", outputStream);
+
+        // Convert the resized and compressed image to a Base64-encoded string
         byte[] imageBytes = outputStream.toByteArray();
         return Base64.getEncoder().encodeToString(imageBytes);
+    }
+
+    public static Image convertStringToImage(String imageAsString) throws IOException {
+        byte[] imageBytes = Base64.getDecoder().decode(imageAsString);
+        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageBytes);
+        return new Image(inputStream);
     }
 
     public void sendImage(Image image) {
@@ -101,7 +128,6 @@ public class Client {
                         System.out.println(finalMsgFromGroupChat);
                         if (finalMsgFromGroupChat.length() > 200) {
                            Image image = convertStringToImage(finalMsgFromGroupChat);
-                            //Image image = new Image("file:C:/Users/HP/Desktop/Screenshot 2023-06-08 094957.jpg");
                             Platform.runLater(() -> clientController.printImageMsg(image, Pos.CENTER_LEFT));
 
                             System.out.println(finalMsgFromGroupChat.length());
@@ -118,33 +144,20 @@ public class Client {
         }).start();
     }
 
+
+ /*   public static String convertImageToString(Image image) throws IOException {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
+        ImageIO.write(bufferedImage, "png", outputStream);
+        byte[] imageBytes = outputStream.toByteArray();
+        return Base64.getEncoder().encodeToString(imageBytes);
+
     public static Image convertStringToImage(String imageAsString) throws IOException {
         byte[] imageBytes = Base64.getDecoder().decode(imageAsString);
         ByteArrayInputStream inputStream = new ByteArrayInputStream(imageBytes);
         return new Image(inputStream);
-    }
-
-   /* public void listenToImageMessage() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String imageAsString = "";
-                while (socket.isConnected()) {
-                    try {
-                        imageAsString = dataInputStream.readUTF();
-                        String finalImageAsString = imageAsString;
-                        // Convert String to image
-                        Image image = convertStringToImage(finalImageAsString);
-
-                        Platform.runLater(() -> clientController.printImageMsg(image, Pos.CENTER_LEFT));
-
-                    } catch (Exception e) {
-                        closeEverything(socket, dataInputStream, dataOutputStream);
-                    }
-                }
-            }
-        }).start();
     }*/
+
 
     private void closeEverything(Socket socket, DataInputStream dataInputStream, DataOutputStream dataOutputStream) {
         try {

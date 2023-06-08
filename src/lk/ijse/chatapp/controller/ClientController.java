@@ -90,20 +90,21 @@ public class ClientController {
         vbox.getChildren().add(vBox);
     }
 
-
     public void printImageMsg(Image image, Pos position) {
         VBox vBox = new VBox();
 
-        // Create a Node to hold the image.
+        // Calculate the desired width and height based on the maximum allowed size
+        double maxWidth = 200; // Maximum width for the image
+        double maxHeight = 200; // Maximum height for the image
+
+        double scaleFactor = Math.min(maxWidth / image.getWidth(), maxHeight / image.getHeight());
+        double desiredWidth = image.getWidth() * scaleFactor;
+        double desiredHeight = image.getHeight() * scaleFactor;
+
+        // Create a resized ImageView
         ImageView imageView = new ImageView(image);
-
-        // Calculate the desired percentage of width
-        double desiredWidthPercentage = 50; // 50% of the original width
-
-        // Calculate the actual width based on the percentage
-        double desiredWidth = image.getWidth() * desiredWidthPercentage / 100.0;
-
         imageView.setFitWidth(desiredWidth);
+        imageView.setFitHeight(desiredHeight);
         imageView.setPreserveRatio(true);
 
         vBox.getChildren().add(imageView);
