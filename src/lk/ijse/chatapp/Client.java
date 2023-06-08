@@ -125,7 +125,7 @@ public class Client {
                     try {
                         msgFromGroupChat = dataInputStream.readUTF();
                         String finalMsgFromGroupChat = msgFromGroupChat;
-                        System.out.println(finalMsgFromGroupChat);
+
                         if (finalMsgFromGroupChat.length() > 200) {
                            Image image = convertStringToImage(finalMsgFromGroupChat);
                             Platform.runLater(() -> clientController.printImageMsg(image, Pos.CENTER_LEFT));
@@ -143,20 +143,6 @@ public class Client {
             }
         }).start();
     }
-
-
- /*   public static String convertImageToString(Image image) throws IOException {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        BufferedImage bufferedImage = SwingFXUtils.fromFXImage(image, null);
-        ImageIO.write(bufferedImage, "png", outputStream);
-        byte[] imageBytes = outputStream.toByteArray();
-        return Base64.getEncoder().encodeToString(imageBytes);
-
-    public static Image convertStringToImage(String imageAsString) throws IOException {
-        byte[] imageBytes = Base64.getDecoder().decode(imageAsString);
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(imageBytes);
-        return new Image(inputStream);
-    }*/
 
 
     private void closeEverything(Socket socket, DataInputStream dataInputStream, DataOutputStream dataOutputStream) {
