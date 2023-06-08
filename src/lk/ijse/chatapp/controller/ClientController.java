@@ -2,12 +2,19 @@ package lk.ijse.chatapp.controller;
 
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
+import javafx.stage.FileChooser;
 import lk.ijse.chatapp.Client;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.Scanner;
@@ -17,8 +24,15 @@ public class ClientController {
     public VBox vbox;
     public Label txtName;
     private Client client;
+    @FXML
+    private ScrollPane scrollPane;
 
     public void initialize() {
+        // Scroll to the bottom whenever the height of the VBox changes
+        vbox.heightProperty().addListener((observable, oldValue, newValue) -> {
+            scrollPane.setVvalue(1.0);
+        });
+
         new Thread(() -> {
             String username = txtName.getText();
 
@@ -30,6 +44,7 @@ public class ClientController {
             }
             client = new Client(socket, username, this);
             client.listenToMessage();
+            //client.listenToImageMessage();
             client.chatEnterText();
         }).start();
 
@@ -46,6 +61,21 @@ public class ClientController {
     }
 
     public void btnSendImgClickOnAction(ActionEvent actionEvent) {
+        // Get the image from the user
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select an image to send");
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        // Check if the user has selected an image
+        if (selectedFile != null) {
+
+            // Create a new Image object from the file
+            Image image = new Image(selectedFile.toURI().toString());
+
+            // Send the image to the server
+            client.sendImage(image);
+            printImageMsg(image, Pos.CENTER_RIGHT);
+        }
     }
 
     public void printMsg(String msg, Pos pos) {
@@ -53,10 +83,33 @@ public class ClientController {
         Label label = new Label(msg);
         label.setFont(Font.font("jetbrains mono"));
 
-        label.setStyle("-fx-background-color: #bafaf7 ; -fx-label-padding: 3px ; -fx-text-fill: #312e2e;");
+        label.setStyle("-fx-background-color: #bafaf7 ; -fx-end-margin: 3px ; -fx-text-fill: #312e2e;");
 
         vBox.getChildren().add(label);
         vBox.setAlignment(pos);
         vbox.getChildren().add(vBox);
     }
+
+
+    public void printImageMsg(Image image, Pos position) {
+        VBox vBox = new VBox();
+
+        // Create a Node to hold the image.
+        ImageView imageView = new ImageView(image);
+
+        // Calculate the desired percentage of width
+        double desiredWidthPercentage = 50; // 50% of the original width
+
+        // Calculate the actual width based on the percentage
+        double desiredWidth = image.getWidth() * desiredWidthPercentage / 100.0;
+
+        imageView.setFitWidth(desiredWidth);
+        imageView.setPreserveRatio(true);
+
+        vBox.getChildren().add(imageView);
+
+        vBox.setAlignment(position);
+        vbox.getChildren().add(vBox);
+    }
+
 }

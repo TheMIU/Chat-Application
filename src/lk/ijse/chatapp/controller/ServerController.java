@@ -1,16 +1,16 @@
 package lk.ijse.chatapp.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import lk.ijse.chatapp.Server;
-
-import java.awt.*;
 import java.io.IOException;
 import java.net.ServerSocket;
 
@@ -18,8 +18,16 @@ import java.net.ServerSocket;
 public class ServerController {
     public VBox vbox;
     private Stage primaryStage;
+    @FXML
+    private ScrollPane scrollPane;
+
 
     public void initialize() throws IOException {
+        // Scroll to the bottom whenever the height of the VBox changes
+        vbox.heightProperty().addListener((observable, oldValue, newValue) -> {
+            scrollPane.setVvalue(1.0);
+        });
+
         // Server start
         new Thread(() -> {
             ServerSocket serverSocket = null;
@@ -48,7 +56,7 @@ public class ServerController {
         Label label = new Label(msg);
         label.setFont(Font.font("jetbrains mono0"));
 
-        label.setStyle("-fx-background-color: #bafaf7 ; -fx-label-padding: 3px ; -fx-text-fill: #312e2e;");
+        label.setStyle("-fx-background-color: #bafaf7 ; -fx-end-margin: 3px ; -fx-text-fill: #312e2e;");
 
         vBox.getChildren().add(label);
         vBox.setAlignment(pos);

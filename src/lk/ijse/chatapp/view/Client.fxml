@@ -29,9 +29,9 @@
          </font>
       </Label>
       <FontAwesomeIcon fill="#b6ffe3" glyphName="USER" layoutX="21.0" layoutY="76.0" size="3em" textAlignment="CENTER" wrappingWidth="50.00000178813934" />
-      <ScrollPane layoutX="19.0" layoutY="87.0" prefHeight="350.0" prefWidth="342.0">
+      <ScrollPane fx:id="scrollPane" layoutX="19.0" layoutY="87.0" prefHeight="350.0" prefWidth="342.0">
          <content>
-            <VBox fx:id="vbox" alignment="TOP_RIGHT" maxHeight="348.0" prefHeight="348.0" prefWidth="339.0" scaleShape="false" style="-fx-background-color: #ffffff; -fx-padding: 10px;" />
+            <VBox fx:id="vbox" alignment="TOP_RIGHT" maxHeight="348.0" prefHeight="348.0" prefWidth="325.0" scaleShape="false" style="-fx-background-color: #ffffff; -fx-padding: 10px;" />
          </content>
       </ScrollPane>
     </children>
