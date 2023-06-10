@@ -22,10 +22,5 @@ public class AppInitializerServer extends Application {
         primaryStage.setX(0);
         primaryStage.setY(0);
         primaryStage.setTitle("Server");
-
-        primaryStage.setOnCloseRequest(event -> {
-            event.consume();
-            Platform.exit();  // Close the application
-        });
     }
 }

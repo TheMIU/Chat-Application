@@ -1,5 +1,6 @@
 package lk.ijse.chatapp.controller;
-
+import javafx.application.Platform;
+import javafx.stage.Stage;
 import lk.ijse.chatapp.Client;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -30,6 +31,7 @@ public class ClientController {
             scrollPane.setVvalue(1.0);
         });
 
+
         new Thread(() -> {
             String username = txtName.getText();
 
@@ -51,8 +53,10 @@ public class ClientController {
     }
 
     public void btnSendMsgClickOnAction(ActionEvent actionEvent) {
-        printMsg(txtSend.getText(), Pos.CENTER_RIGHT);
-        client.sendMessage();
+       if(txtSend.getText() != null && !txtSend.getText().equals("") ){
+           printMsg(txtSend.getText(), Pos.CENTER_RIGHT);
+           client.sendMessage();
+       }
         txtSend.clear();
         txtSend.requestFocus();
     }
@@ -109,5 +113,7 @@ public class ClientController {
         vBox.setAlignment(position);
         vbox.getChildren().add(vBox);
     }
+
+
 
 }

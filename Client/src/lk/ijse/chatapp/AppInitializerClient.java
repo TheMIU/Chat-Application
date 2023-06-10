@@ -5,6 +5,7 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import lk.ijse.chatapp.controller.ClientController;
 
 import java.io.IOException;
 
@@ -20,10 +21,5 @@ public class AppInitializerClient extends Application {
         primaryStage.show();
         primaryStage.setResizable(false);
         primaryStage.setTitle("Login");
-
-        primaryStage.setOnCloseRequest(event -> {
-            event.consume();
-            Platform.exit();  // Close the application
-        });
     }
 }
