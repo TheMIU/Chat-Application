@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,5 +36,11 @@ public class LoginController {
             new Alert(Alert.AlertType.ERROR, "User Name Required!").show();
         }
 
+    }
+
+    public void OnEnterKeyPressed(KeyEvent keyEvent) throws IOException {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            btnLoginClickOnAction(new ActionEvent());
+        }
     }
 }

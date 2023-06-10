@@ -1,6 +1,6 @@
 package lk.ijse.chatapp.controller;
-import javafx.application.Platform;
-import javafx.stage.Stage;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import lk.ijse.chatapp.Client;
 import com.jfoenix.controls.JFXTextField;
 import javafx.event.ActionEvent;
@@ -114,6 +114,12 @@ public class ClientController {
         vbox.getChildren().add(vBox);
     }
 
+    // send msg on enter key pressed
+    public void OnEnterKeyPressed(KeyEvent keyEvent) throws IOException {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            btnSendMsgClickOnAction(new ActionEvent());
+        }
+    }
 
 
 }
